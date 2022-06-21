@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href = "css/styles.css">
+    <title>Пользователь</title>
+</head>
+<body>
+<header class="header">
+    <div class="header__wrapper">
+        <p>Данные профиля</p>
+        <p th:text="${user.getFirstName()}"></p>
+    </div>
+</header>
+<main class="main">
+    <div class="main__wrapper">
+        <h2>Имя: <span th:text="${user.getFirstName()}"></span></h2>
+        <p>Фамилия: <span th:text="${user.getLastName()}"></span></p>
+        <p>Возраст: <span th:text="${user.getAge()}"></span></p>
+        <p>Почта: <span th:text="${user.geteMail()}"></span></p>
+
+        <a class="button" th:href="@{/{id}/edit(id=${user.getId()})}" th:text="Edit"></a>
+        <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+            <button  class="button button--del" type="submit">Удалить пользователя</button>
+        </form>
+    </div>
+</main>
+<style>
+    .header {
+        widht:100%;
+        background-color: #0078d4;
+        color: white;
+        font-family: Arial;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 28px;
+    }
+
+    p, body {
+        margin: 0;
+    }
+
+    body {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: min-content 1fr;
+    }
+
+    .main {
+        background-color: #f3f2f1;
+    }
+
+    .main__wrapper {
+        background-color: #faf9f8;
+        min-height: calc(100% - 50px);
+    }
+
+    .header__wrapper,
+    .main__wrapper{
+        max-width: 1200px;
+        margin: 0 auto 0 auto;
+        padding: 25px 18px;
+    }
+
+    .button,
+    button {
+        width: 280px;
+        display: block;
+        font-family: Arial;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        background-color: #0078d4;
+        border-radius: 4px;
+        margin: 18px auto;
+        padding: 6px;
+        color: white;
+        text-decoration: none;
+        border: 0;
+        text-align: center;
+    }
+
+    .button--add {
+        margin: 25px auto;
+    }
+
+    .button--del {
+        background-color: #a4262c;
+    }
+
+    tr:not(:first-child) th {
+        padding: 0;
+        border-top: 1px solid #eeeceb;
+    }
+
+</style>
+</body>
+</html>

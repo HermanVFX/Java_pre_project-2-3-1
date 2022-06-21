@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href = "css/styles.css">
+    <title>Пользователи</title>
+</head>
+<body>
+<header class="header">
+    <div class="header__wrapper">
+        <p>Пользователи</p>
+    </div>
+</header>
+<main class="main">
+    <div class="main__wrapper">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th>Электронная почта</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr th:each="user : ${users}">
+                <th th:utext="${user.getId()}">ID</th>
+                <th th:utext="${user.getFirstName()}">Имя</th>
+                <th th:utext="${user.getLastName()}">Фамилия</th>
+                <th th:utext="${user.getAge()}">Возраст</th>
+                <th th:utext="${user.geteMail()}">Электронная почта</th>
+                <th>
+                    <a class="button" th:href="@{/{id}(id=${user.getId()})}">Открыть</a>
+                </th>
+                <th>
+                    <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+                        <button class="button button--del" type="submit">Удалить пользователя</button>
+                    </form>
+                </th>
+                <th>
+                    <a class="button" th:href="@{/{id}/edit(id=${user.getId()})}">Изменить</a>
+                </th>
+            </tr>
+        </table>
+
+        <a class="button button--add" href="/new">Добавить пользователя</a>
+
+    </div>
+</main>
+
+<style>
+    .header {
+        widht:100%;
+        background-color: #0078d4;
+        color: white;
+        font-family: Arial;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 28px;
+    }
+
+    p, body {
+        margin: 0;
+    }
+
+    body {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: min-content 1fr;
+    }
+
+    .main {
+        background-color: #f3f2f1;
+    }
+
+    .main__wrapper {
+        background-color: #faf9f8;
+        min-height: calc(100% - 50px);
+    }
+
+    .header__wrapper,
+    .main__wrapper{
+        max-width: 1200px;
+        margin: 0 auto 0 auto;
+        padding: 25px 18px;
+    }
+
+    table {
+        width: 100%;
+        background-color: white;
+        border-radius: 4px;
+        border-width: 1px 1px 0;
+        border-style: solid;
+        border-color: #eeeceb;
+        padding: 0;
+
+        font-family: Arial;
+        font-size: 14px;
+        line-height: 18px;
+        color: gray;
+        font-weight: 400;
+
+    }
+
+    .button,
+    button {
+        display: block;
+        font-family: Arial;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        background-color: #0078d4;
+        border-radius: 4px;
+        margin: auto;
+        padding: 6px 12px;
+        color: white;
+        text-decoration: none;
+        border: 0;
+        text-align: center;
+    }
+
+    .button--add {
+        margin: 25px auto;
+    }
+
+    .button--del {
+        background-color: #a4262c;
+    }
+
+    tr:not(:first-child) th {
+        padding: 0;
+        border-top: 1px solid #eeeceb;
+    }
+
+    th .button,
+    th button {
+        margin: 6px auto;
+    }
+</style>
+
+</body>
+</html>
