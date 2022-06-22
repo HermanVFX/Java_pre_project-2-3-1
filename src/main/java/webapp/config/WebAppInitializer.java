@@ -28,19 +28,4 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-//    @Override
-//    public void onStartup(ServletContext aServletContext) throws ServletException {
-//        FilterRegistration.Dynamic encodingFilter = aServletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
-//        encodingFilter.setInitParameter("encoding", "UTF-8");
-//        encodingFilter.setInitParameter("forceEncoding", "true");
-//        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
-//
-//        super.onStartup(aServletContext);
-//        registerHiddenFieldFilter(aServletContext);
-//    }
-//
-//    private void registerHiddenFieldFilter(ServletContext aContext) {
-//        aContext.addFilter("hiddenHttpMethodFilter",
-//        new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
-//    }
 }
